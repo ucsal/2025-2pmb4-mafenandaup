@@ -25,16 +25,15 @@ public class App {
             buttonPanel.add(colorBtn);
             buttonPanel.add(savePng);
             buttonPanel.add(undoBtn);
-            
-            
-            ChangeColorButton colorCommand = new ChangeColorButton();
-            colorBtn.addActionListener(colorCommand);
    
             colorBtn.setBackground(Color.yellow);
             colorBtn.setForeground(Color.BLACK);
             colorBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             colorBtn.setPreferredSize(new Dimension(100, 30));
             
+            colorBtn.addActionListener(e -> {
+                panel.setCorAlterada(); 
+            });
           
             savePng.setPreferredSize(new Dimension(100, 30));
             savePng.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

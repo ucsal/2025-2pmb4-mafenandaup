@@ -16,6 +16,7 @@ class DrawingPanel extends JPanel {
     private static final int DEFAULT_SIZE = 60;
     private final List<Shape> shapes = new ArrayList<>();
     private Point startDrag = null;
+    private Color corOriginal = new Color(34,76,244);
 
     DrawingPanel() {
         
@@ -50,14 +51,29 @@ class DrawingPanel extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         for (Shape s : shapes) {
-            g2.setColor(Color.blue);
+            g2.setColor(corOriginal); // aqui tb esqueci de alterar as variáveis de cor, por isso tava preso em uma cor só 
             g2.fill(s);
             g2.setColor(new Color(0,0,0,70));
-            g2.setStroke(new BasicStroke(5f));
+            g2.setStroke(new BasicStroke(7f));
             g2.draw(s);
         }
 
         g2.dispose();
     }
+
+	public Color getCorOriginal() {
+		return corOriginal;
+	}
+	
+	public void setCorAlterada() {
+	    if (corOriginal.equals(new Color(34,76,244))) {
+	        corOriginal = Color.MAGENTA; 
+	    } else {
+	        corOriginal = new Color(34,76,244); 
+	    }
+
+	    System.out.println("cor atual " + corOriginal);
+	    repaint(); 
+	}
 
 }
