@@ -21,14 +21,34 @@ public class App {
             
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout()); 
+            buttonPanel.setBackground(Color.decode("#f3aac0"));
             buttonPanel.add(colorBtn);
             buttonPanel.add(savePng);
             buttonPanel.add(undoBtn);
             
-            colorBtn.setBackground(Color.CYAN);
+            
+            ChangeColorButton colorCommand = new ChangeColorButton();
+            colorBtn.addActionListener(colorCommand);
+   
+            colorBtn.setBackground(Color.yellow);
             colorBtn.setForeground(Color.BLACK);
-            colorBtn.setBounds(100,200,150,200);
-
+            colorBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            colorBtn.setPreferredSize(new Dimension(100, 30));
+            
+          
+            savePng.setPreferredSize(new Dimension(100, 30));
+            savePng.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            savePng.setBackground(Color.cyan);
+            savePng.setForeground(Color.BLACK);
+            
+       
+            undoBtn.setPreferredSize(new Dimension(100, 30));
+            undoBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            undoBtn.setBackground(Color.pink);
+            undoBtn.setForeground(Color.BLACK);
+            
+            
+            
             frame.setLayout(new BorderLayout());
             frame.add(panel, BorderLayout.CENTER);
             frame.add(buttonPanel, BorderLayout.SOUTH);

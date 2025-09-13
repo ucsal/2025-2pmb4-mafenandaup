@@ -50,7 +50,7 @@ class DrawingPanel extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         for (Shape s : shapes) {
-            g2.setColor(new Color(34,76,244));
+            g2.setColor(Color.blue);
             g2.fill(s);
             g2.setColor(new Color(0,0,0,70));
             g2.setStroke(new BasicStroke(5f));
