@@ -81,5 +81,9 @@ class DrawingPanel extends JPanel {
 	    b.setForeground(cores[colorListIndex]);
 	    repaint(); 
 	}
+	
+	public void UndoBolinhas() {
+		figura.removeLast();
+	}
 
 }

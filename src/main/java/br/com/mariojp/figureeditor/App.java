@@ -16,15 +16,15 @@ public class App {
             DrawingPanel panel = new DrawingPanel();
 
             JButton colorBtn = new JButton("Mudar de Cor");
-            JButton savePng = new JButton("Salvar PNG");
             JButton undoBtn = new JButton("Desfazer");
+            JButton deleteBtn = new JButton("Apagar Tudo");
             
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout()); 
             buttonPanel.setBackground(Color.decode("#f3aac0"));
             buttonPanel.add(colorBtn);
-            buttonPanel.add(savePng);
             buttonPanel.add(undoBtn);
+            buttonPanel.add(deleteBtn);
    
             colorBtn.setBackground(Color.yellow);
             colorBtn.setForeground(Color.BLACK);
@@ -34,17 +34,21 @@ public class App {
             colorBtn.addActionListener(e -> {
                 panel.setCorAlterada(colorBtn); 
             });
-          
-            savePng.setPreferredSize(new Dimension(100, 30));
-            savePng.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            savePng.setBackground(Color.cyan);
-            savePng.setForeground(Color.BLACK);
-            
+     
        
             undoBtn.setPreferredSize(new Dimension(100, 30));
             undoBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             undoBtn.setBackground(Color.pink);
             undoBtn.setForeground(Color.BLACK);
+
+            
+            deleteBtn.setPreferredSize(new Dimension(100, 30));
+            deleteBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            deleteBtn.setBackground(Color.red);
+            deleteBtn.setForeground(Color.BLACK);
+            deleteBtn.addActionListener(e -> {
+                panel.clear();
+            });
             
             
             
