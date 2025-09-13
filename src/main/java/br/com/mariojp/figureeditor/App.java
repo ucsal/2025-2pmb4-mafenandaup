@@ -32,7 +32,7 @@ public class App {
             colorBtn.setPreferredSize(new Dimension(100, 30));
             
             colorBtn.addActionListener(e -> {
-                panel.setCorAlterada(); 
+                panel.setCorAlterada(colorBtn); 
             });
           
             savePng.setPreferredSize(new Dimension(100, 30));

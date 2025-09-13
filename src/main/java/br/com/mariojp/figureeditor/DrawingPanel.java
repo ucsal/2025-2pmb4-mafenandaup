@@ -14,12 +14,22 @@ class DrawingPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final int DEFAULT_SIZE = 60;
-    private final List<Shape> shapes = new ArrayList<>();
+    private final List<FiguraAlternavel> figura = new ArrayList<>(); //criei uma classe pra armazenar as propriedades que quero alterar a medida q coloco novas formas
+    private final Color[] cores = {
+            new Color(34,76,244), // cor original
+            Color.MAGENTA,
+            Color.GREEN,
+            Color.ORANGE,
+            Color.RED,
+            Color.pink
+        };
+    private int colorListIndex =  0;
     private Point startDrag = null;
     private Color corOriginal = new Color(34,76,244);
 
     DrawingPanel() {
         
+
         setBackground(Color.WHITE);
         setOpaque(true);
         setDoubleBuffered(true);
@@ -30,7 +40,7 @@ class DrawingPanel extends JPanel {
                     int size = Math.max(Math.min(DEFAULT_SIZE, DEFAULT_SIZE), 10);
                     Shape s =  new Ellipse2D.Double(e.getPoint().x, e.getPoint().y, size, size);
                     //return new Rectangle2D.Double(e.getPoint().x, e.getPoint().y, Math.max(DEFAULT_SIZE, 10), Math.max(DEFAULT_SIZE, 10));
-                    shapes.add(s);
+                    figura.add(new FiguraAlternavel(s, cores[colorListIndex]));
                     repaint();
                 }
             }
@@ -41,7 +51,7 @@ class DrawingPanel extends JPanel {
     }
 
     void clear() {
-        shapes.clear();
+    	figura.clear();
         repaint();
     }
 
@@ -50,13 +60,14 @@ class DrawingPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        for (Shape s : shapes) {
-            g2.setColor(corOriginal); // aqui tb esqueci de alterar as variáveis de cor, por isso tava preso em uma cor só 
-            g2.fill(s);
-            g2.setColor(new Color(0,0,0,70));
+        for (FiguraAlternavel f : figura) {  // aqui tb esqueci de alterar as variáveis de cor, por isso tava preso em uma cor só 
+            g2.setColor(f.cor);      
+            g2.fill(f.shape);
+            g2.setColor(new Color(0, 0, 0, 70));
             g2.setStroke(new BasicStroke(7f));
-            g2.draw(s);
+            g2.draw(f.shape);
         }
+
 
         g2.dispose();
     }
@@ -65,14 +76,9 @@ class DrawingPanel extends JPanel {
 		return corOriginal;
 	}
 	
-	public void setCorAlterada() {
-	    if (corOriginal.equals(new Color(34,76,244))) {
-	        corOriginal = Color.MAGENTA; 
-	    } else {
-	        corOriginal = new Color(34,76,244); 
-	    }
-
-	    System.out.println("cor atual " + corOriginal);
+	public void setCorAlterada(JButton b) {
+		colorListIndex = (colorListIndex + 1) % cores.length; //eu nem sabia que essa maneira de percorrer array existia. Teria me salvo mt tempo em estrutura de dados
+	    b.setForeground(cores[colorListIndex]);
 	    repaint(); 
 	}
 
